@@ -14,8 +14,13 @@ class Record
     @last_name = fields[0]
     @first_name = fields[1]
     @gender = fields[2]
-    @favorite_color = fields[3]
-    @date_of_birth = Date.strptime(fields[4], "%m/%d/%Y")
+    if delimiter != " "
+      @favorite_color = fields[3]
+      @date_of_birth = Date.strptime(fields[4], "%m/%d/%Y")
+    else
+      @favorite_color = fields[4]
+      @date_of_birth = Date.strptime(fields[3], "%m/%d/%Y")
+    end
   end
 
   def ==(other_record)

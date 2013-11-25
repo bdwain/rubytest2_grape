@@ -27,7 +27,7 @@ describe Record do
 
     it "parses a line of space-delimited input" do
       record = Record.new
-      record.parse("Smith Bob Male Blue 5/15/1988")
+      record.parse("Smith Bob Male 5/15/1988 Blue")
       expect(record).to eq(sample_record)
     end
   end
@@ -50,7 +50,7 @@ describe Record do
 
       context "when the delimiter is different" do
         it "returns true" do
-          record2.parse("Jones Sarah Female Green 3/2/1943")
+          record2.parse("Jones Sarah Female 3/2/1943 Green")
           expect(record1 == record2).to be_true
         end
       end      
