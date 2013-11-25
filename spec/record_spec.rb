@@ -1,7 +1,25 @@
 require 'record'
 
 describe Record do
-  describe "parse" do
+  describe "#valid?" do
+    context "when @valid is true" do
+      it "returns true" do
+        record = Record.new
+        record.instance_variable_set(:@valid, true)
+        expect(record.valid?).to be_true
+      end
+    end
+
+    context "when @valid is false" do
+      it "returns false" do
+        record = Record.new
+        record.instance_variable_set(:@valid, false)
+        expect(record.valid?).to be_false
+      end
+    end    
+  end
+
+  describe "#parse" do
     let(:sample_record) do 
       sample_record = Record.new
       #instance_variable_set is used so the setters can be private
