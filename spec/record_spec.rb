@@ -4,7 +4,7 @@ describe Record do
   describe "parse" do
     let(:sample_record) do 
       sample_record = Record.new
-      #instance_variable_set is used so the setter can be private
+      #instance_variable_set is used so the setters can be private
       sample_record.instance_variable_set(:@last_name, "Smith")
       sample_record.instance_variable_set(:@first_name, "Bob")
       sample_record.instance_variable_set(:@gender, "Male")
@@ -12,23 +12,27 @@ describe Record do
       sample_record.instance_variable_set(:@date_of_birth, Date.new(1988, 5, 15))
       return sample_record
     end
+    let(:record)  {Record.new}
 
-    it "parses a line of pipe-delimited input" do
-      record = Record.new
-      record.parse("Smith | Bob | Male | Blue | 5/15/1988")
-      expect(record).to eq(sample_record)
+    context "when input is pipe-delimited" do
+      it "populates all fields correctly" do
+        record.parse("Smith | Bob | Male | Blue | 5/15/1988")
+        expect(record).to eq(sample_record)
+      end
     end
 
-    it "parses a line of comma-delimited input" do
-      record = Record.new
-      record.parse("Smith, Bob, Male, Blue, 5/15/1988")
-      expect(record).to eq(sample_record)
+    context "when input is comma-delimited" do
+      it "populates the fields correctly" do
+        record.parse("Smith, Bob, Male, Blue, 5/15/1988")
+        expect(record).to eq(sample_record)
+      end
     end
 
-    it "parses a line of space-delimited input" do
-      record = Record.new
-      record.parse("Smith Bob Male 5/15/1988 Blue")
-      expect(record).to eq(sample_record)
+    context "when input is space-delimited" do
+      it "populates the fields correctly" do
+        record.parse("Smith Bob Male 5/15/1988 Blue")
+        expect(record).to eq(sample_record)
+      end
     end
   end
 
