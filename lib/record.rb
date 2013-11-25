@@ -25,10 +25,10 @@ class Record
 
     if delimiter != " "
       @favorite_color = fields[3]
-      @date_of_birth = Date.strptime(fields[4], "%m/%d/%Y")
+      @date_of_birth = parse_date_string(fields[4])
     else
       @favorite_color = fields[4]
-      @date_of_birth = Date.strptime(fields[3], "%m/%d/%Y")
+      @date_of_birth = parse_date_string(fields[3])
     end
 
     @valid = true
@@ -52,9 +52,14 @@ class Record
     if date_of_birth.is_a? Date
       @date_of_birth = date_of_birth
     else
-      @date_of_birth = Date.strptime(date_of_birth, "%m/%d/%Y")
+      @date_of_birth = parse_date_string(date_of_birth)
     end
 
     @valid = true
+  end
+
+  private
+  def parse_date_string(str)
+    return Date.strptime(str, "%m/%d/%Y")
   end
 end
