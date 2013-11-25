@@ -31,4 +31,64 @@ describe Record do
       expect(record).to eq(sample_record)
     end
   end
+
+  describe "==" do
+    let(:record1) do
+      sample_record = Record.new
+      sample_record.parse("Jones | Sarah | Female | Green | 3/2/1943")
+      return sample_record
+    end
+    let(:record2) {Record.new}
+
+    context "when all fields are equal" do
+      context "when the delimiter is the same" do
+        it "returns true" do
+          record2.parse("Jones | Sarah | Female | Green | 3/2/1943")
+          expect(record1 == record2).to be_true
+        end
+      end
+
+      context "when the delimiter is different" do
+        it "returns true" do
+          record2.parse("Jones Sarah Female Green 3/2/1943")
+          expect(record1 == record2).to be_true
+        end
+      end      
+    end
+
+    context "when last_name is different" do
+      it "returns false" do
+        record2.parse("Smith | Sarah | Female | Green | 3/2/1943")
+        expect(record1 == record2).to be_false
+      end
+    end
+
+    context "when first_name is different" do
+      it "returns false" do
+        record2.parse("Jones | Jon | Female | Green | 3/2/1943")
+        expect(record1 == record2).to be_false
+      end
+    end
+
+    context "when gender is different" do
+      it "returns false" do
+        record2.parse("Jones | Sarah | Male | Green | 3/2/1943")
+        expect(record1 == record2).to be_false
+      end
+    end
+
+    context "when favorite_color is different" do
+      it "returns false" do
+        record2.parse("Jones | Sarah | Female | Red | 3/2/1943")
+        expect(record1 == record2).to be_false
+      end
+    end
+
+    context "when date_of_birth is different" do
+      it "returns false" do
+        record2.parse("Smith | Sarah | Female | Green | 4/2/1943")
+        expect(record1 == record2).to be_false
+      end
+    end    
+  end
 end
