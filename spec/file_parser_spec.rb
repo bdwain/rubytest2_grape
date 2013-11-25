@@ -9,6 +9,7 @@ describe FileParser do
       begin
         file.puts("Jones Sarah Female 4/1/1982 Red")
         file.puts("Smith Joe Male 5/15/1988 Blue")
+        file.rewind
         result_set = file_parser.parse_file(file.path)
       ensure
         file.close
