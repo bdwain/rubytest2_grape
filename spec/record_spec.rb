@@ -2,9 +2,9 @@ require 'record'
 
 describe Record do
   describe "parse" do
-    let(:sample_record) do
-      #instance_variable_set is used so the fields can be un-writable 
+    let(:sample_record) do 
       sample_record = Record.new
+      #instance_variable_set is used so the setter can be private
       sample_record.instance_variable_set(:@last_name, "Smith")
       sample_record.instance_variable_set(:@first_name, "Bob")
       sample_record.instance_variable_set(:@gender, "Male")
