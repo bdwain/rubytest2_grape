@@ -22,13 +22,7 @@ describe Record do
   describe "#parse" do
     let(:sample_record) do 
       sample_record = Record.new
-      #instance_variable_set is used so the setters can be private
-      sample_record.instance_variable_set(:@last_name, "Smith")
-      sample_record.instance_variable_set(:@first_name, "Bob")
-      sample_record.instance_variable_set(:@gender, "Male")
-      sample_record.instance_variable_set(:@favorite_color, "Blue")
-      sample_record.instance_variable_set(:@date_of_birth, Date.new(1988, 5, 15))
-      sample_record.instance_variable_set(:@valid, true)      
+      sample_record.set_values_manually("Smith", "Bob", "Male", "Blue", "5/15/1988")
       return sample_record
     end
     let(:record)  {Record.new}
@@ -73,7 +67,7 @@ describe Record do
   describe "==" do
     let(:record1) do
       sample_record = Record.new
-      sample_record.parse("Jones | Sarah | Female | Green | 3/2/1943")
+      sample_record.set_values_manually("Jones", "Sarah", "Female", "Green", "3/2/1943")
       return sample_record
     end
     let(:record2) {Record.new}
@@ -128,5 +122,48 @@ describe Record do
         expect(record1 == record2).to be_false
       end
     end    
+  end
+
+  describe "#set_values_manually" do
+    let(:record) do
+      record = Record.new
+      record.set_values_manually("Smith", "Jon", "Male", "Blue", "5/15/1988")
+      return record
+    end
+
+    it "sets last_name to the passed in value" do
+      expect(record.last_name).to eq("Smith")
+    end
+    it "sets first_name to the passed in value" do
+      expect(record.first_name).to eq("Jon")
+    end
+    it "sets gender to the passed in value" do
+      expect(record.gender).to eq("Male")
+    end
+    it "sets favorite_color to the passed in value" do
+      expect(record.favorite_color).to eq("Blue")
+    end
+
+    context "when date_of_birth is a String" do
+      it "sets date_of_birth to a Date object parsed from the string" do
+        expect(record.date_of_birth).to eq(Date.new(1988, 5, 15))
+      end
+    end
+
+    context "when date_of_birth is a Date" do
+      let(:date_record) do
+        record = Record.new
+        record.set_values_manually("Smith", "Jon", "Male", "Blue", Date.new(1988, 5, 15))
+        return record
+      end
+
+      it "sets date_of_birth to the passed in value" do
+        expect(date_record.date_of_birth).to eq(Date.new(1988, 5, 15))
+      end
+    end
+
+    it "sets valid? to true" do
+      expect(record.valid?).to be_true
+    end
   end
 end
