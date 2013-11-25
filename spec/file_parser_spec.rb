@@ -26,5 +26,20 @@ describe FileParser do
       expect(result_set.include?(record1)).to be_true
       expect(result_set.include?(record2)).to be_true
     end
+
+    it "doesn't add invalid records to the result set" do
+      file_parser = FileParser.new
+      file = Tempfile.new('FileParser_parse_file_test2')
+      begin
+        file.puts("Jones Sarah Female 4/1/1982") #only 4 fields
+        file.rewind
+        result_set = file_parser.parse_file(file.path)
+      ensure
+        file.close
+        file.unlink
+      end
+
+      expect(result_set.length).to eq(0)
+    end
   end
 end
