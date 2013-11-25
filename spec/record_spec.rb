@@ -10,6 +10,7 @@ describe Record do
       sample_record.instance_variable_set(:@gender, "Male")
       sample_record.instance_variable_set(:@favorite_color, "Blue")
       sample_record.instance_variable_set(:@date_of_birth, Date.new(1988, 5, 15))
+      sample_record.instance_variable_set(:@valid, true)      
       return sample_record
     end
     let(:record)  {Record.new}
@@ -19,6 +20,11 @@ describe Record do
         record.parse("Smith | Bob | Male | Blue | 5/15/1988")
         expect(record).to eq(sample_record)
       end
+
+      it "sets valid to true" do
+        record.parse("Smith | Bob | Male | Blue | 5/15/1988")
+        expect(record.valid?).to be_true
+      end      
     end
 
     context "when input is comma-delimited" do
@@ -26,6 +32,11 @@ describe Record do
         record.parse("Smith, Bob, Male, Blue, 5/15/1988")
         expect(record).to eq(sample_record)
       end
+
+      it "sets valid to true" do
+        record.parse("Smith, Bob, Male, Blue, 5/15/1988")
+        expect(record.valid?).to be_true
+      end            
     end
 
     context "when input is space-delimited" do
@@ -33,6 +44,11 @@ describe Record do
         record.parse("Smith Bob Male 5/15/1988 Blue")
         expect(record).to eq(sample_record)
       end
+
+      it "sets valid to true" do
+        record.parse("Smith Bob Male 5/15/1988 Blue")
+        expect(record.valid?).to be_true
+      end            
     end
   end
 

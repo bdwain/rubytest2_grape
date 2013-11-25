@@ -1,6 +1,10 @@
 class Record
   attr_reader :last_name, :first_name, :gender, :favorite_color, :date_of_birth
   
+  def valid?
+    @valid
+  end
+
   def parse(line)
     if line.include? "|"
       delimiter = " | "
@@ -11,9 +15,14 @@ class Record
     end
 
     fields = line.split(delimiter)
+    if(fields.length != 5) #invalid record
+      return
+    end
+
     @last_name = fields[0]
     @first_name = fields[1]
     @gender = fields[2]
+
     if delimiter != " "
       @favorite_color = fields[3]
       @date_of_birth = Date.strptime(fields[4], "%m/%d/%Y")
@@ -21,6 +30,8 @@ class Record
       @favorite_color = fields[4]
       @date_of_birth = Date.strptime(fields[3], "%m/%d/%Y")
     end
+
+    @valid = true
   end
 
   def ==(other_record)
@@ -28,6 +39,7 @@ class Record
     @first_name == other_record.first_name &&
     @gender == other_record.gender &&
     @favorite_color == other_record.favorite_color &&
-    @date_of_birth == other_record.date_of_birth
+    @date_of_birth == other_record.date_of_birth &&
+    @valid == other_record.valid?
   end
 end
