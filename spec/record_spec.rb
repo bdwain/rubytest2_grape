@@ -9,7 +9,7 @@ describe Record do
       sample_record.instance_variable_set(:@first_name, "Bob")
       sample_record.instance_variable_set(:@gender, "Male")
       sample_record.instance_variable_set(:@favorite_color, "Blue")
-      sample_record.instance_variable_set(:@date_of_birth, "5/15/1988")
+      sample_record.instance_variable_set(:@date_of_birth, Date.new(1988, 5, 15))
       return sample_record
     end
 

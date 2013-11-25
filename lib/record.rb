@@ -15,7 +15,7 @@ class Record
     @first_name = fields[1]
     @gender = fields[2]
     @favorite_color = fields[3]
-    @date_of_birth = fields[4]
+    @date_of_birth = Date.strptime(fields[4], "%m/%d/%Y")
   end
 
   def ==(other_record)
