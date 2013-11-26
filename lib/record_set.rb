@@ -24,4 +24,10 @@ class RecordSet
       r1.date_of_birth <=> r2.date_of_birth
     end
   end
+
+  def get_records_by_last_name_descending
+    records.sort do |r1, r2|
+      r2.last_name <=> r1.last_name
+    end
+  end
 end
