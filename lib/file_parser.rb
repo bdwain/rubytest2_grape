@@ -5,7 +5,7 @@ class FileParser
       file.each_line do |line|
         record = Record.new
         record.parse(line)
-        result_set.push(record) if record.valid?
+        result_set.push(record)
       end
     end
     return result_set
