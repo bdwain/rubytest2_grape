@@ -27,4 +27,3 @@ to start the server, just say run rackup
 GET http://localhost:9292/records/gender
 
 [{"last_name" : "Hamm", "first_name" : "Mia","gender" : "Female", "favorite_color" : "Blue", "date_of_birth" : "6/15/1990"},{"last_name" : "Gretzky", "first_name" : "Wayne","gender" : "Male", "favorite_color" : "White", "date_of_birth" : "2/15/1968"},{"last_name" : "Jordan", "first_name" : "Michael","gender" : "Male", "favorite_color" : "Red", "date_of_birth" : "5/14/1988"},{"last_name" : "Ruth", "first_name" : "Babe","gender" : "Male", "favorite_color" : "Blue", "date_of_birth" : "4/15/1988"}]
-

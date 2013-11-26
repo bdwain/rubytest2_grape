@@ -63,7 +63,7 @@ class Record
 
   def to_s
     if valid?
-      "#{@last_name} | #{@first_name} | #{@gender} | #{get_date_string(@date_of_birth)} | #{@favorite_color}"
+      "#{@last_name} #{@first_name} #{@gender} #{get_date_string(@date_of_birth)} #{@favorite_color}"
     else
       ""
     end

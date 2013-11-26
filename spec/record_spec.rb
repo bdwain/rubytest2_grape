@@ -130,8 +130,8 @@ describe Record do
         record.set_values_manually("Smith", "Jon", "Male", "Blue", "10/10/1988")
       end
 
-      it "returns the fields separated by pipes" do
-        expect(record.to_s).to eq("Smith | Jon | Male | 10/10/1988 | Blue" )
+      it "returns the fields separated by spaces" do
+        expect(record.to_s).to eq("Smith Jon Male 10/10/1988 Blue" )
       end
 
       it "doesn't zero-pad months" do
