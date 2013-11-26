@@ -1,3 +1,5 @@
+require_relative 'record'
+
 class FileParser
   def parse_file(file_path)
     result_set = Array.new
