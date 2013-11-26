@@ -38,6 +38,26 @@ describe RecordParser::API do
         expect(result["favorite_color"]).to eq("Blue")
       end
 
+      it "can handle space delimited records" do
+        post "/records", {"line" => "Smith Bob Male 10/12/1985 Blue"}
+        expect(last_response.status).to eq(201)
+      end
+
+      it "can handle pipe delimited records" do
+        post "/records", {"line" => "Smith | Bob | Male | Blue | 10/12/1985"}
+        expect(last_response.status).to eq(201)
+      end
+
+      it "can handle comma delimited records" do
+        post "/records", {"line" => "Smith, Bob, Male, Blue, 10/12/1985"}
+        expect(last_response.status).to eq(201)
+      end
+
+      it "can handle pipe delimited records" do
+        post "/records", {"line" => "Smith | Bob | Male | Blue | 10/12/1985"}
+        expect(last_response.status).to eq(201)
+      end      
+
       context "when the record file does not exist" do
         before(:each) do
           post "/records", {"line" => "Smith Bob Male 10/12/1985 Blue"}
