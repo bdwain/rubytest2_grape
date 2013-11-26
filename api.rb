@@ -13,7 +13,7 @@ module RecordParser
         "records.txt"
       end
 
-      #gets a record_set built from the current contents of the record file
+      #gets a RecordSet built from the current contents of the record file
       def get_current_record_set
         parser = FileParser.new
         record_set = RecordSet.new
