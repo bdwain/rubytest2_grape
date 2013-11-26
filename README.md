@@ -15,7 +15,8 @@ A file is just a set of formatted lines
 
 ### Usage
 
-ruby main.rb \<file1\> \<file2\> \<file3\> ....
+    bundle install
+    ruby main.rb <file1> <file2> <file3> ....
 
 ### Sample Output
 
