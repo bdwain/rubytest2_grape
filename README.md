@@ -1,9 +1,9 @@
 rubytest2
 =========
 
-A simple tool to process records from files, combine them into one set of records, and output them sorted by various fields.
+A simple Grape API that takes records as strings in a post request and returns them in different get requests
 
-### File Format
+### Record Format
 
 A record consists of the following 5 fields: last name, first name, gender, date of birth and favorite color. They can be in one of 3 formats
 
@@ -11,41 +11,20 @@ A record consists of the following 5 fields: last name, first name, gender, date
 - Comma Delimited (LastName, FirstName, Gender, FavoriteColor, DateOfBirth)
 - Space Delimited (LastName FirstName Gender DateOfBirth FavoriteColor)
 
-A file is just a set of formatted lines
-
 ### Usage
 
-ruby main.rb \<file1\> \<file2\> \<file3\> ....
+to start the server, just say run rackup
+
+### Endpoints
+
+- POST /records - Post a single record in any of the 3 formats
+- GET /records/gender - returns records sorted by gender
+- GET /records/birthdate - returns records sorted by birthdate
+- GET /records/name - returns records sorted by name
 
 ### Sample Output
 
-$ ruby main.rb test1 test2 test3  
-Records sorted by gender and then last name ascending:  
-Hamm | Mia | Female | 6/15/1990 | Blue  
-Obama | Michelle | Female | 1/17/1964 | Green  
-Gretzky | Wayne | Male | 2/15/1968 | White  
-Jordan | Michael | Male | 5/14/1988 | Red  
-Lincoln | Abraham | Male | 2/25/1810 | Blue  
-Obama | Barack | Male | 8/4/1961 | Blue  
-Ruth | Babe | Male | 4/15/1988 | Blue  
-Washington | George | Male | 2/15/1728 | Red  
+GET http://localhost:9292/records/gender
 
-Records sorted by birth date ascending:  
-Washington | George | Male | 2/15/1728 | Red  
-Lincoln | Abraham | Male | 2/25/1810 | Blue  
-Obama | Barack | Male | 8/4/1961 | Blue  
-Obama | Michelle | Female | 1/17/1964 | Green  
-Gretzky | Wayne | Male | 2/15/1968 | White  
-Ruth | Babe | Male | 4/15/1988 | Blue  
-Jordan | Michael | Male | 5/14/1988 | Red  
-Hamm | Mia | Female | 6/15/1990 | Blue  
+[{"last_name" : "Hamm", "first_name" : "Mia","gender" : "Female", "favorite_color" : "Blue", "date_of_birth" : "6/15/1990"},{"last_name" : "Gretzky", "first_name" : "Wayne","gender" : "Male", "favorite_color" : "White", "date_of_birth" : "2/15/1968"},{"last_name" : "Jordan", "first_name" : "Michael","gender" : "Male", "favorite_color" : "Red", "date_of_birth" : "5/14/1988"},{"last_name" : "Ruth", "first_name" : "Babe","gender" : "Male", "favorite_color" : "Blue", "date_of_birth" : "4/15/1988"}]
 
-Records sorted by last name descending:  
-Washington | George | Male | 2/15/1728 | Red  
-Ruth | Babe | Male | 4/15/1988 | Blue  
-Obama | Barack | Male | 8/4/1961 | Blue  
-Obama | Michelle | Female | 1/17/1964 | Green  
-Lincoln | Abraham | Male | 2/25/1810 | Blue  
-Jordan | Michael | Male | 5/14/1988 | Red  
-Hamm | Mia | Female | 6/15/1990 | Blue  
-Gretzky | Wayne | Male | 2/15/1968 | White  
