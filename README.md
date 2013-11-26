@@ -21,31 +21,32 @@ ruby main.rb \<file1\> \<file2\> \<file3\> ....
 
 $ ruby main.rb test1 test2 test3  
 Records sorted by gender and then last name ascending:  
-Hamm | Mia | Female | 6/15/1990 | Blue  
-Obama | Michelle | Female | 1/17/1964 | Green  
-Gretzky | Wayne | Male | 2/15/1968 | White  
-Jordan | Michael | Male | 5/14/1988 | Red  
-Lincoln | Abraham | Male | 2/25/1810 | Blue  
-Obama | Barack | Male | 8/4/1961 | Blue  
-Ruth | Babe | Male | 4/15/1988 | Blue  
-Washington | George | Male | 2/15/1728 | Red  
+Hamm Mia Female 6/15/1990 Blue  
+Obama Michelle Female 1/17/1964 Green  
+Gretzky Wayne Male 2/15/1968 White  
+Jordan Michael Male 5/14/1988 Red  
+Lincoln Abraham Male 2/25/1810 Blue  
+Obama Barack Male 8/4/1961 Blue  
+Ruth Babe Male 4/15/1988 Blue  
+Washington George Male 2/15/1728 Red  
 
 Records sorted by birth date ascending:  
-Washington | George | Male | 2/15/1728 | Red  
-Lincoln | Abraham | Male | 2/25/1810 | Blue  
-Obama | Barack | Male | 8/4/1961 | Blue  
-Obama | Michelle | Female | 1/17/1964 | Green  
-Gretzky | Wayne | Male | 2/15/1968 | White  
-Ruth | Babe | Male | 4/15/1988 | Blue  
-Jordan | Michael | Male | 5/14/1988 | Red  
-Hamm | Mia | Female | 6/15/1990 | Blue  
+Washington George Male 2/15/1728 Red  
+Lincoln Abraham Male 2/25/1810 Blue  
+Obama Barack Male 8/4/1961 Blue  
+Obama Michelle Female 1/17/1964 Green  
+Gretzky Wayne Male 2/15/1968 White  
+Ruth Babe Male 4/15/1988 Blue  
+Jordan Michael Male 5/14/1988 Red  
+Hamm Mia Female 6/15/1990 Blue  
 
 Records sorted by last name descending:  
-Washington | George | Male | 2/15/1728 | Red  
-Ruth | Babe | Male | 4/15/1988 | Blue  
-Obama | Barack | Male | 8/4/1961 | Blue  
-Obama | Michelle | Female | 1/17/1964 | Green  
-Lincoln | Abraham | Male | 2/25/1810 | Blue  
-Jordan | Michael | Male | 5/14/1988 | Red  
-Hamm | Mia | Female | 6/15/1990 | Blue  
-Gretzky | Wayne | Male | 2/15/1968 | White  
+Washington George Male 2/15/1728 Red  
+Ruth Babe Male 4/15/1988 Blue  
+Obama Barack Male 8/4/1961 Blue  
+Obama Michelle Female 1/17/1964 Green  
+Lincoln Abraham Male 2/25/1810 Blue  
+Jordan Michael Male 5/14/1988 Red  
+Hamm Mia Female 6/15/1990 Blue  
+Gretzky Wayne Male 2/15/1968 White  
+
