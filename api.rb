@@ -28,11 +28,12 @@ module RecordParser
         record = Record.new
         record.parse(params[:line])
         if !record.valid?
-          return
+          error! "Invalid Record", 400
         end
         File.open(get_record_filename, "a") do |file|
           file.puts(record.to_s)
         end
+        record
       end
 
       desc "Return records sorted by gender (females before males) then by last name ascending."
