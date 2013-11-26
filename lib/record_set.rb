@@ -5,7 +5,7 @@ class RecordSet
     @records = Array.new
   end
 
-  def AddRecords(newRecords)
+  def add_records(newRecords)
     @records.concat(newRecords.select {|record| record.valid? })
   end
 

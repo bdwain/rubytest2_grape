@@ -2,7 +2,7 @@ require 'record_set'
 require 'record'
 
 describe RecordSet do
-  describe "AddRecords" do
+  describe "add_records" do
     let(:records) do
       record1 = Record.new
       record1.set_values_manually("Smith", "Bob", "Male", "Blue", "5/15/1988")
@@ -14,7 +14,7 @@ describe RecordSet do
     let(:set) {RecordSet.new}
 
     it "Adds the passed in records to the set" do
-      set.AddRecords(records)
+      set.add_records(records)
 
       expect(set.records.size).to eq(2)
       expect(set.records.include?(records[0])).to be_true
@@ -25,7 +25,7 @@ describe RecordSet do
       record3 = Record.new
       records.push(record3)
 
-      set.AddRecords(records)
+      set.add_records(records)
       expect(set.records.include?(record3)).to be_false
     end
   end
