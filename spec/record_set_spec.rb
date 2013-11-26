@@ -55,49 +55,50 @@ describe RecordSet do
       records.get_records_by_gender
     end
 
-    it "returns an array with all of the added records" do
-      expect(records.length).to eq(3)
-      expect(records.include?(bob_smith)).to be_true
-      expect(records.include?(sarah_jones)).to be_true
-      expect(records.include?(will_jones)).to be_true
-    end
-
-    it "puts females before males in the results" do
-      expect(records[0]).to eq(sarah_jones)
-    end
-
-    it "sorts by last name ascending when the gender is the same" do
-      expect(records[1]).to eq(will_jones)
+    it "puts females before males and then sorts by last name ascending" do
+      expect(records).to eq([sarah_jones, will_jones, bob_smith])
     end
   end
 
   describe "get_records_by_birth_date" do
-    let(:young_person) do
+    let(:first_person) do
       record = Record.new
-      record.set_values_manually("Smith", "Bob", "Male", "Blue", "5/15/1988")
+      record.set_values_manually("Hamm", "Mia", "Female", "Blue", "5/15/1988")
       return record
     end
 
-    let(:old_person) do
+    let(:second_person) do
       record = Record.new
-      record.set_values_manually("Jones", "Will", "Male", "Red", "1/3/1945")
+      record.set_values_manually("Smith", "Will", "Male", "Red", "1/3/1989")
+      return record
+    end
+
+    let(:third_person) do
+      record = Record.new
+      record.set_values_manually("Williams", "Venus", "Female", "Green", "4/3/1989")
+      return record
+    end    
+
+    let(:fourth_person) do
+      record = Record.new
+      record.set_values_manually("Gretzky", "Wayne", "Male", "Black", "6/13/1990")
+      return record
+    end    
+
+    let(:fifth_person) do
+      record = Record.new
+      record.set_values_manually("Jordan", "Michael", "Male", "Brown", "5/14/1991")
       return record
     end    
 
     let(:records) do
       records = RecordSet.new
-      records.add_records([young_person, old_person])
+      records.add_records([fourth_person, second_person, first_person, fifth_person, third_person])
       records.get_records_by_birth_date
     end
 
-    it "returns an array with all of the added records" do
-      expect(records.length).to eq(2)
-      expect(records.include?(old_person)).to be_true
-      expect(records.include?(young_person)).to be_true
-    end
-
-    it "puts the earlier dates of birth first" do
-      expect(records[0]).to eq(old_person)
+    it "sorts everyone by ascending birth date" do
+      expect(records).to eq([first_person, second_person, third_person, fourth_person, fifth_person])
     end
   end
 end
