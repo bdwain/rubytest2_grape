@@ -64,7 +64,7 @@ describe Record do
     end
   end
 
-  describe "==" do
+  describe "#==" do
     let(:record1) do
       sample_record = Record.new
       sample_record.set_values_manually("Jones", "Sarah", "Female", "Green", "3/2/1943")

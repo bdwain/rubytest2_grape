@@ -2,7 +2,7 @@ require 'file_parser'
 require 'tempfile'
 
 describe FileParser do
-  describe "parse_file" do
+  describe "#parse_file" do
     context "when the file exists" do
       it "returns a set of records with the contents of the file" do
         file_parser = FileParser.new
