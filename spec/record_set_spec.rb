@@ -2,7 +2,7 @@ require 'record_set'
 require 'record'
 
 describe RecordSet do
-  describe "add_records" do
+  describe "#add_records" do
     let(:records) do
       record1 = Record.new
       record1.set_values_manually("Smith", "Bob", "Male", "Blue", "5/15/1988")
@@ -30,7 +30,7 @@ describe RecordSet do
     end
   end
 
-  describe "get_records_by_gender" do
+  describe "#get_records_by_gender" do
     let(:bob_smith) do
       record = Record.new
       record.set_values_manually("Smith", "Bob", "male", "Blue", "5/15/1988")
@@ -57,7 +57,7 @@ describe RecordSet do
     end
   end
 
-  describe "get_records_by_birth_date_ascending" do
+  describe "#get_records_by_birth_date_ascending" do
     let(:first_person) do
       record = Record.new
       record.set_values_manually("Hamm", "Mia", "Female", "Blue", "5/15/1988")
@@ -94,7 +94,7 @@ describe RecordSet do
     end
   end
 
-  describe "get_records_by_last_name_descending" do
+  describe "#get_records_by_last_name_descending" do
     let(:first_person) do
       record = Record.new
       record.set_values_manually("Gretzky", "Wayne", "Male", "Black", "6/13/1990")
