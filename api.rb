@@ -8,10 +8,12 @@ module RecordParser
     format :json
 
     helpers do
+      #gets the path to the record file where all of the records are stores
       def get_record_filename
         "records.txt"
       end
 
+      #gets a record_set built from the current contents of the record file
       def get_current_record_set
         parser = FileParser.new
         record_set = RecordSet.new
