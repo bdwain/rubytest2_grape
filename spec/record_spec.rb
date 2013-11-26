@@ -1,4 +1,5 @@
 require 'record'
+require 'json'
 
 describe Record do
   describe "#valid?" do
@@ -192,5 +193,29 @@ describe Record do
     it "sets valid? to true" do
       expect(record.valid?).to be_true
     end
+  end
+
+  describe "#to_json" do
+    context "when valid" do
+      it "returns a json representation of an object with the 5 fields" do
+        r = Record.new
+        r.set_values_manually("Smith", "Jon", "Male", "Blue", "5/15/1988")
+        result = JSON.parse(r.to_json)
+
+        expect(result.length).to eq(5)
+        expect(result["last_name"]).to eq("Smith")
+        expect(result["first_name"]).to eq("Jon")
+        expect(result["gender"]).to eq("Male")
+        expect(result["favorite_color"]).to eq("Blue")
+        expect(result["date_of_birth"]).to eq("5/15/1988")
+      end
+    end
+
+    context "when invalid" do
+      it "returns an empty string" do
+        r = Record.new
+        expect(r.to_json).to eq("")
+      end
+    end    
   end
 end

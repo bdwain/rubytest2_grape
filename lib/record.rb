@@ -63,14 +63,27 @@ class Record
 
   def to_s
     if valid?
-      "#{@last_name} | #{@first_name} | #{@gender} | #{@date_of_birth.strftime("%-m/%-d/%Y")} | #{@favorite_color}"
+      "#{@last_name} | #{@first_name} | #{@gender} | #{get_date_string(@date_of_birth)} | #{@favorite_color}"
     else
       ""
     end
   end
 
+  def to_json(options = nil)
+    if !valid?
+      return ""
+    end
+    result = "{\"last_name\" : \"#{@last_name}\", \"first_name\" : \"#{@first_name}\","
+    result << "\"gender\" : \"#{@gender}\", \"favorite_color\" : \"#{@favorite_color}\", "
+    result << "\"date_of_birth\" : \"#{get_date_string(@date_of_birth)}\"}"
+  end
+
   private
   def parse_date_string(str)
     Date.strptime(str, "%m/%d/%Y")
+  end
+
+  def get_date_string(date)
+    date.strftime("%-m/%-d/%Y")
   end
 end
