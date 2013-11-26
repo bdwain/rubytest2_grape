@@ -11,10 +11,10 @@ class RecordSet
 
   def get_records_by_gender
     records.sort do |r1, r2|
-      if r1.gender == r2.gender
-        r1.last_name <=> r2.last_name
+      if r1.gender.casecmp(r2.gender) == 0
+        r1.last_name.casecmp(r2.last_name)
       else
-        r1.gender <=> r2.gender
+        r1.gender.casecmp(r2.gender)
       end
     end
   end
@@ -27,7 +27,7 @@ class RecordSet
 
   def get_records_by_last_name_descending
     records.sort do |r1, r2|
-      r2.last_name <=> r1.last_name
+      r2.last_name.casecmp(r1.last_name)
     end
   end
 end
