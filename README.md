@@ -13,7 +13,6 @@ A record consists of the following 5 fields: last name, first name, gender, date
 
 ### Usage
 
-<<<<<<< HEAD
 to start the server:
 
     bundle install  
