@@ -60,6 +60,14 @@ class Record
     @valid = true
   end
 
+  def to_s
+    if valid?
+      "#{@last_name} | #{@first_name} | #{@gender} | #{@favorite_color} | #{@date_of_birth.strftime("%-m/%-d/%Y")}"
+    else
+      ""
+    end
+  end
+
   private
   def parse_date_string(str)
     Date.strptime(str, "%m/%d/%Y")

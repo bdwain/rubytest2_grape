@@ -124,6 +124,38 @@ describe Record do
     end    
   end
 
+  describe "#to_s" do
+    context "when the record is valid" do
+      let(:record) do
+        record = Record.new
+        record.set_values_manually("Smith", "Jon", "Male", "Blue", "10/10/1988")
+        return record
+      end
+
+      it "returns the fields separated by pipes" do
+        expect(record.to_s).to eq("Smith | Jon | Male | Blue | 10/10/1988")
+      end
+
+      it "doesn't zero-pad months" do
+        record.set_values_manually("Smith", "Jon", "Male", "Blue", "1/10/1988")
+        expect(record.to_s.include?("1/10/1988")).to be_true
+      end
+
+      it "doesn't zero-pad days" do
+        record.set_values_manually("Smith", "Jon", "Male", "Blue", "10/1/1988")
+        expect(record.to_s.include?("10/1/1988")).to be_true
+      end
+    end
+
+    context "when the record is invalid" do
+      let(:record) {Record.new}
+
+      it "returns the fields separated by pipes" do
+        expect(record.to_s).to eq("")
+      end
+    end
+  end
+
   describe "#set_values_manually" do
     let(:record) do
       record = Record.new
