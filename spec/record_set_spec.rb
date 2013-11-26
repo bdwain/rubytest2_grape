@@ -60,7 +60,7 @@ describe RecordSet do
     end
   end
 
-  describe "get_records_by_birth_date" do
+  describe "get_records_by_birth_date_ascending" do
     let(:first_person) do
       record = Record.new
       record.set_values_manually("Hamm", "Mia", "Female", "Blue", "5/15/1988")
@@ -94,7 +94,7 @@ describe RecordSet do
     let(:records) do
       records = RecordSet.new
       records.add_records([fourth_person, second_person, first_person, fifth_person, third_person])
-      records.get_records_by_birth_date
+      records.get_records_by_birth_date_ascending
     end
 
     it "sorts everyone by ascending birth date" do
