@@ -60,6 +60,6 @@ class Record
 
   private
   def parse_date_string(str)
-    return Date.strptime(str, "%m/%d/%Y")
+    Date.strptime(str, "%m/%d/%Y")
   end
 end
