@@ -13,8 +13,11 @@ A record consists of the following 5 fields: last name, first name, gender, date
 
 ### Usage
 
-to start the server, just say run rackup
+to start the server:
 
+    bundle install  
+    rackup
+     
 ### Endpoints
 
 - POST /records - Post a single record in any of the 3 formats
