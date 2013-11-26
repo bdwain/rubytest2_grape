@@ -23,7 +23,6 @@ describe Record do
     let(:sample_record) do 
       sample_record = Record.new
       sample_record.set_values_manually("Smith", "Bob", "Male", "Blue", "5/15/1988")
-      return sample_record
     end
     let(:record)  {Record.new}
 
@@ -68,7 +67,6 @@ describe Record do
     let(:record1) do
       sample_record = Record.new
       sample_record.set_values_manually("Jones", "Sarah", "Female", "Green", "3/2/1943")
-      return sample_record
     end
     let(:record2) {Record.new}
 
@@ -85,7 +83,7 @@ describe Record do
           record2.parse("Jones Sarah Female 3/2/1943 Green")
           expect(record1 == record2).to be_true
         end
-      end      
+      end
     end
 
     context "when last_name is different" do
@@ -129,7 +127,6 @@ describe Record do
       let(:record) do
         record = Record.new
         record.set_values_manually("Smith", "Jon", "Male", "Blue", "10/10/1988")
-        return record
       end
 
       it "returns the fields separated by pipes" do
@@ -160,7 +157,6 @@ describe Record do
     let(:record) do
       record = Record.new
       record.set_values_manually("Smith", "Jon", "Male", "Blue", "5/15/1988")
-      return record
     end
 
     it "sets last_name to the passed in value" do
@@ -186,7 +182,6 @@ describe Record do
       let(:date_record) do
         record = Record.new
         record.set_values_manually("Smith", "Jon", "Male", "Blue", Date.new(1988, 5, 15))
-        return record
       end
 
       it "sets date_of_birth to the passed in value" do

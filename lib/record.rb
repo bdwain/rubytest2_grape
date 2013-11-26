@@ -58,6 +58,7 @@ class Record
     end
 
     @valid = true
+    self #easier to work with in a bunch of areas
   end
 
   def to_s

@@ -10,6 +10,6 @@ class FileParser
         result_set.push(record)
       end
     end
-    return result_set
+    result_set
   end
 end

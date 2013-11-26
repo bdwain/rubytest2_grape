@@ -8,7 +8,7 @@ describe RecordSet do
       record1.set_values_manually("Smith", "Bob", "Male", "Blue", "5/15/1988")
       record2 = Record.new
       record2.set_values_manually("Jones", "Tom", "Male", "Green", "1/2/1990")
-      return [record1, record2]
+      [record1, record2]
     end
 
     let(:set) {RecordSet.new}
@@ -34,19 +34,16 @@ describe RecordSet do
     let(:bob_smith) do
       record = Record.new
       record.set_values_manually("Smith", "Bob", "male", "Blue", "5/15/1988")
-      return record
     end
 
     let(:sarah_jones) do
       record = Record.new
       record.set_values_manually("Jones", "Sarah", "female", "Green", "1/2/1990")
-      return record
     end
 
     let(:will_jones) do
       record = Record.new
       record.set_values_manually("Jones", "Will", "Male", "Red", "1/3/1945")
-      return record
     end    
 
     let(:records) do
@@ -64,31 +61,26 @@ describe RecordSet do
     let(:first_person) do
       record = Record.new
       record.set_values_manually("Hamm", "Mia", "Female", "Blue", "5/15/1988")
-      return record
     end
 
     let(:second_person) do
       record = Record.new
       record.set_values_manually("Smith", "Will", "Male", "Red", "1/3/1989")
-      return record
     end
 
     let(:third_person) do
       record = Record.new
       record.set_values_manually("Williams", "Venus", "Female", "Green", "4/3/1989")
-      return record
     end    
 
     let(:fourth_person) do
       record = Record.new
       record.set_values_manually("Gretzky", "Wayne", "Male", "Black", "6/13/1990")
-      return record
     end    
 
     let(:fifth_person) do
       record = Record.new
       record.set_values_manually("Jordan", "Michael", "Male", "Brown", "5/14/1991")
-      return record
     end    
 
     let(:records) do
@@ -106,31 +98,26 @@ describe RecordSet do
     let(:first_person) do
       record = Record.new
       record.set_values_manually("Gretzky", "Wayne", "Male", "Black", "6/13/1990")
-      return record
     end
 
     let(:second_person) do
       record = Record.new
       record.set_values_manually("Hamm", "Mia", "Female", "Blue", "5/15/1988")
-      return record
     end
 
     let(:third_person) do
       record = Record.new
       record.set_values_manually("jordan", "Michael", "Male", "Brown", "5/14/1991")
-      return record
     end    
 
     let(:fourth_person) do
       record = Record.new
       record.set_values_manually("Smith", "Will", "Male", "Red", "1/3/1989")
-      return record
     end
 
     let(:fifth_person) do
       record = Record.new
       record.set_values_manually("williams", "Venus", "Female", "Green", "4/3/1989")
-      return record
     end
 
     let(:records) do
