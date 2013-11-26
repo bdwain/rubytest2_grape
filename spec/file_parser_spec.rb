@@ -34,5 +34,10 @@ describe FileParser do
       file_parser = FileParser.new
       expect {file_parser.parse_file("non_existant_file.bar")}.to_not raise_error
     end
+
+    it "returns an empty array" do
+      file_parser = FileParser.new
+      expect(file_parser.parse_file("non_existant_file.bar")).to eq([])
+    end
   end
 end
