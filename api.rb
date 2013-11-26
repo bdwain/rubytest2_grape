@@ -5,7 +5,6 @@ require 'grape'
 
 module RecordParser
   class API < Grape::API
-    version 'v1', using: :path
     format :json
 
     helpers do
