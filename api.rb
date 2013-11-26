@@ -1,5 +1,6 @@
 require 'file_parser'
 require 'record_set'
+require 'record'
 require 'grape'
 
 module RecordParser
@@ -23,7 +24,14 @@ module RecordParser
     resource :records do
       desc "Post a single data line delimited by either pipes, commas, or spaces"
       post do
-
+        record = Record.new
+        record.parse(params[:line])
+        if !record.valid?
+          return
+        end
+        File.open(get_record_filename, "a") do |file|
+          file.puts(record.to_s)
+        end
       end
 
       desc "Return records sorted by gender (females before males) then by last name ascending."
