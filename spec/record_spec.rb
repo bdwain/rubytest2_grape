@@ -192,5 +192,10 @@ describe Record do
     it "sets valid? to true" do
       expect(record.valid?).to be_true
     end
+
+    it "returns the record" do
+      record2 = Record.new
+      expect(record2.set_values_manually("Smith", "Jon", "Male", "Blue", "5/15/1988")).to eq(record)
+    end
   end
 end
