@@ -8,7 +8,7 @@ module RecordParser
     format :json
 
     helpers do
-      #gets the path to the record file where all of the records are stores
+      #gets the path to the record file where all of the records are stored
       def get_record_filename
         "records.txt"
       end
