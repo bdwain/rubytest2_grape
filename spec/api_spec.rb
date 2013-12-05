@@ -4,11 +4,11 @@ require 'api'
 require 'rack/test'
 require 'json'
 
-describe RecordParser::API do
+describe RecordApi::API do
   include Rack::Test::Methods
 
   def app
-    RecordParser::API
+    RecordApi::API
   end
 
   def record_filename

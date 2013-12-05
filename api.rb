@@ -3,7 +3,7 @@ require 'record_set'
 require 'record'
 require 'grape'
 
-module RecordParser
+module RecordApi
   class API < Grape::API
     format :json
 
