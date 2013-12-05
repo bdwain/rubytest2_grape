@@ -20,11 +20,43 @@ describe Record do
     end    
   end
 
-  describe "#parse" do
-    let(:sample_record) do 
-      sample_record = Record.new
-      sample_record.set_values_manually("Smith", "Bob", "Male", "Blue", "5/15/1988")
+  describe "#initialize" do
+    let(:record) {Record.new("Smith", "Jon", "Male", "Blue", "5/15/1988")}
+
+    it "sets last_name to the passed in value" do
+      expect(record.last_name).to eq("Smith")
     end
+    it "sets first_name to the passed in value" do
+      expect(record.first_name).to eq("Jon")
+    end
+    it "sets gender to the passed in value" do
+      expect(record.gender).to eq("Male")
+    end
+    it "sets favorite_color to the passed in value" do
+      expect(record.favorite_color).to eq("Blue")
+    end
+
+    context "when date_of_birth is a String" do
+      it "sets date_of_birth to a Date object parsed from the string" do
+        expect(record.date_of_birth).to eq(Date.new(1988, 5, 15))
+      end
+    end
+
+    context "when date_of_birth is a Date" do
+      let(:date_record) {Record.new("Smith", "Jon", "Male", "Blue", Date.new(1988, 5, 15))}
+
+      it "sets date_of_birth to the passed in value" do
+        expect(date_record.date_of_birth).to eq(Date.new(1988, 5, 15))
+      end
+    end
+
+    it "sets valid? to true" do
+      expect(record.valid?).to be_true
+    end
+  end  
+
+  describe "#parse" do
+    let(:sample_record) {Record.new("Smith", "Bob", "Male", "Blue", "5/15/1988")}
     let(:record)  {Record.new}
 
     context "when input is pipe-delimited" do
@@ -65,10 +97,7 @@ describe Record do
   end
 
   describe "#==" do
-    let(:record1) do
-      sample_record = Record.new
-      sample_record.set_values_manually("Jones", "Sarah", "Female", "Green", "3/2/1943")
-    end
+    let(:record1) {Record.new("Jones", "Sarah", "Female", "Green", "3/2/1943")}
     let(:record2) {Record.new}
 
     context "when all fields are equal" do
@@ -125,22 +154,19 @@ describe Record do
 
   describe "#to_s" do
     context "when the record is valid" do
-      let(:record) do
-        record = Record.new
-        record.set_values_manually("Smith", "Jon", "Male", "Blue", "10/10/1988")
-      end
+      let(:record) {Record.new("Smith", "Jon", "Male", "Blue", "10/10/1988")}
 
       it "returns the fields separated by spaces" do
         expect(record.to_s).to eq("Smith Jon Male 10/10/1988 Blue" )
       end
 
       it "doesn't zero-pad months" do
-        record.set_values_manually("Smith", "Jon", "Male", "Blue", "1/10/1988")
+        record = Record.new("Smith", "Jon", "Male", "Blue", "1/10/1988")
         expect(record.to_s.include?("1/10/1988")).to be_true
       end
 
       it "doesn't zero-pad days" do
-        record.set_values_manually("Smith", "Jon", "Male", "Blue", "10/1/1988")
+        record = Record.new("Smith", "Jon", "Male", "Blue", "10/1/1988")
         expect(record.to_s.include?("10/1/1988")).to be_true
       end
     end
@@ -154,57 +180,10 @@ describe Record do
     end
   end
 
-  describe "#set_values_manually" do
-    let(:record) do
-      record = Record.new
-      record.set_values_manually("Smith", "Jon", "Male", "Blue", "5/15/1988")
-    end
-
-    it "sets last_name to the passed in value" do
-      expect(record.last_name).to eq("Smith")
-    end
-    it "sets first_name to the passed in value" do
-      expect(record.first_name).to eq("Jon")
-    end
-    it "sets gender to the passed in value" do
-      expect(record.gender).to eq("Male")
-    end
-    it "sets favorite_color to the passed in value" do
-      expect(record.favorite_color).to eq("Blue")
-    end
-
-    context "when date_of_birth is a String" do
-      it "sets date_of_birth to a Date object parsed from the string" do
-        expect(record.date_of_birth).to eq(Date.new(1988, 5, 15))
-      end
-    end
-
-    context "when date_of_birth is a Date" do
-      let(:date_record) do
-        record = Record.new
-        record.set_values_manually("Smith", "Jon", "Male", "Blue", Date.new(1988, 5, 15))
-      end
-
-      it "sets date_of_birth to the passed in value" do
-        expect(date_record.date_of_birth).to eq(Date.new(1988, 5, 15))
-      end
-    end
-
-    it "sets valid? to true" do
-      expect(record.valid?).to be_true
-    end
-
-    it "returns the record" do
-      record2 = Record.new
-      expect(record2.set_values_manually("Smith", "Jon", "Male", "Blue", "5/15/1988")).to eq(record)
-    end
-  end
-
   describe "#to_json" do
     context "when valid" do
       it "returns a json representation of an object with the 5 fields" do
-        r = Record.new
-        r.set_values_manually("Smith", "Jon", "Male", "Blue", "5/15/1988")
+        r = Record.new("Smith", "Jon", "Male", "Blue", "5/15/1988")
         result = JSON.parse(r.to_json)
 
         expect(result.length).to eq(5)

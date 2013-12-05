@@ -17,11 +17,8 @@ describe FileParser do
           file.unlink
         end
 
-        record1 = Record.new
-        record1.set_values_manually("Jones", "Sarah", "Female", "Red", "4/1/1982")
-
-        record2 = Record.new
-        record2.set_values_manually("Smith", "Joe", "Male", "Blue", "5/15/1988")
+        record1 = Record.new("Jones", "Sarah", "Female", "Red", "4/1/1982")
+        record2 = Record.new("Smith", "Joe", "Male", "Blue", "5/15/1988")
 
         expect(result_set.length).to eq(2)
         expect(result_set.include?(record1)).to be_true

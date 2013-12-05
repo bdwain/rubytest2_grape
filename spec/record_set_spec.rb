@@ -4,10 +4,8 @@ require 'record'
 describe RecordSet do
   describe "#add_records" do
     let(:records) do
-      record1 = Record.new
-      record1.set_values_manually("Smith", "Bob", "Male", "Blue", "5/15/1988")
-      record2 = Record.new
-      record2.set_values_manually("Jones", "Tom", "Male", "Green", "1/2/1990")
+      record1 = Record.new("Smith", "Bob", "Male", "Blue", "5/15/1988")
+      record2 = Record.new("Jones", "Tom", "Male", "Green", "1/2/1990")
       [record1, record2]
     end
 
@@ -32,19 +30,11 @@ describe RecordSet do
 
   describe "#get_records_by_gender" do
     let(:bob_smith) do
-      record = Record.new
-      record.set_values_manually("Smith", "Bob", "male", "Blue", "5/15/1988")
+      record = Record.new("Smith", "Bob", "male", "Blue", "5/15/1988")
     end
 
-    let(:sarah_jones) do
-      record = Record.new
-      record.set_values_manually("Jones", "Sarah", "female", "Green", "1/2/1990")
-    end
-
-    let(:will_jones) do
-      record = Record.new
-      record.set_values_manually("Jones", "Will", "Male", "Red", "1/3/1945")
-    end    
+    let(:sarah_jones) {Record.new("Jones", "Sarah", "female", "Green", "1/2/1990")}
+    let(:will_jones) {Record.new("Jones", "Will", "Male", "Red", "1/3/1945") }
 
     let(:records) do
       records = RecordSet.new
@@ -58,30 +48,11 @@ describe RecordSet do
   end
 
   describe "#get_records_by_birth_date_ascending" do
-    let(:first_person) do
-      record = Record.new
-      record.set_values_manually("Hamm", "Mia", "Female", "Blue", "5/15/1988")
-    end
-
-    let(:second_person) do
-      record = Record.new
-      record.set_values_manually("Smith", "Will", "Male", "Red", "1/3/1989")
-    end
-
-    let(:third_person) do
-      record = Record.new
-      record.set_values_manually("Williams", "Venus", "Female", "Green", "4/3/1989")
-    end    
-
-    let(:fourth_person) do
-      record = Record.new
-      record.set_values_manually("Gretzky", "Wayne", "Male", "Black", "6/13/1990")
-    end    
-
-    let(:fifth_person) do
-      record = Record.new
-      record.set_values_manually("Jordan", "Michael", "Male", "Brown", "5/14/1991")
-    end    
+    let(:first_person) {Record.new("Hamm", "Mia", "Female", "Blue", "5/15/1988")}
+    let(:second_person) {Record.new("Smith", "Will", "Male", "Red", "1/3/1989")}
+    let(:third_person) {Record.new("Williams", "Venus", "Female", "Green", "4/3/1989")}
+    let(:fourth_person) {Record.new("Gretzky", "Wayne", "Male", "Black", "6/13/1990")}
+    let(:fifth_person) {Record.new("Jordan", "Michael", "Male", "Brown", "5/14/1991")}
 
     let(:records) do
       records = RecordSet.new
@@ -95,30 +66,11 @@ describe RecordSet do
   end
 
   describe "#get_records_by_last_name_descending" do
-    let(:first_person) do
-      record = Record.new
-      record.set_values_manually("Gretzky", "Wayne", "Male", "Black", "6/13/1990")
-    end
-
-    let(:second_person) do
-      record = Record.new
-      record.set_values_manually("Hamm", "Mia", "Female", "Blue", "5/15/1988")
-    end
-
-    let(:third_person) do
-      record = Record.new
-      record.set_values_manually("jordan", "Michael", "Male", "Brown", "5/14/1991")
-    end    
-
-    let(:fourth_person) do
-      record = Record.new
-      record.set_values_manually("Smith", "Will", "Male", "Red", "1/3/1989")
-    end
-
-    let(:fifth_person) do
-      record = Record.new
-      record.set_values_manually("williams", "Venus", "Female", "Green", "4/3/1989")
-    end
+    let(:first_person) {Record.new("Gretzky", "Wayne", "Male", "Black", "6/13/1990")}    
+    let(:second_person) {Record.new("Hamm", "Mia", "Female", "Blue", "5/15/1988")}
+    let(:third_person) {Record.new("Jordan", "Michael", "Male", "Brown", "5/14/1991")}
+    let(:fourth_person) {Record.new("Smith", "Will", "Male", "Red", "1/3/1989")}
+    let(:fifth_person) {Record.new("Williams", "Venus", "Female", "Green", "4/3/1989")}
 
     let(:records) do
       records = RecordSet.new
