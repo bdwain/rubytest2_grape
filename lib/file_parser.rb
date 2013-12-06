@@ -12,7 +12,7 @@ class FileParser
           result_set.push(record)
         end
       end
-    rescue Errno::ENOENT
+    rescue Errno::ENOENT #file does not exist
     end
     result_set
   end
