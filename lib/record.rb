@@ -32,9 +32,8 @@ class Record
   end
 
   def to_json(options = nil)
-    result = "{\"last_name\" : \"#{@last_name}\", \"first_name\" : \"#{@first_name}\","
-    result << "\"gender\" : \"#{@gender}\", \"favorite_color\" : \"#{@favorite_color}\", "
-    result << "\"date_of_birth\" : \"#{get_date_string(@date_of_birth)}\"}"
+    {"last_name" => @last_name, "first_name" => @first_name, "gender" => @gender, 
+     "favorite_color" => @favorite_color, "date_of_birth" => get_date_string(@date_of_birth)}.to_json
   end
 
   private
