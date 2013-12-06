@@ -21,7 +21,8 @@ describe Record do
   end
 
   describe "#initialize" do
-    let(:record) {Record.new("Smith", "Jon", "Male", "Blue", "5/15/1988")}
+    let(:record) {Record.new("Smith", "Jon", "Male", "Blue", date)}
+    let(:date) {"5/15/1988"}
 
     it "sets last_name to the passed in value" do
       expect(record.last_name).to eq("Smith")
@@ -43,10 +44,10 @@ describe Record do
     end
 
     context "when date_of_birth is a Date" do
-      let(:date_record) {Record.new("Smith", "Jon", "Male", "Blue", Date.new(1988, 5, 15))}
+      let(:date) {Date.new(1988, 5, 15)}
 
       it "sets date_of_birth to the passed in value" do
-        expect(date_record.date_of_birth).to eq(Date.new(1988, 5, 15))
+        expect(record.date_of_birth).to eq(Date.new(1988, 5, 15))
       end
     end
 
@@ -103,21 +104,26 @@ describe Record do
 
   describe "#to_s" do
     context "when the record is valid" do
-      let(:record) {Record.new("Smith", "Jon", "Male", "Blue", "10/10/1988")}
+      let(:record) {Record.new("Smith", "Jon", "Male", "Blue", date)}
+      let(:date) {"10/10/1988"}
 
       it "returns the fields separated by spaces" do
         expect(record.to_s).to eq("Smith Jon Male 10/10/1988 Blue" )
       end
 
-      it "doesn't zero-pad months" do
-        record = Record.new("Smith", "Jon", "Male", "Blue", "1/10/1988")
-        expect(record.to_s.include?("1/10/1988")).to be_true
+      context "when the month is 1 digit long" do
+        let(:date) {"1/10/1988"}
+        it "doesn't zero-pad months" do
+          expect(record.to_s.include?("1/10/1988")).to be_true
+        end
       end
 
-      it "doesn't zero-pad days" do
-        record = Record.new("Smith", "Jon", "Male", "Blue", "10/1/1988")
-        expect(record.to_s.include?("10/1/1988")).to be_true
-      end
+      context "when the day is 1 digit long" do
+        let(:date) {"10/1/1988"}
+        it "doesn't zero-pad days" do
+          expect(record.to_s.include?("10/1/1988")).to be_true
+        end
+      end      
     end
 
     context "when the record is invalid" do
