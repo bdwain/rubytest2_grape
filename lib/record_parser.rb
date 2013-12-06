@@ -6,14 +6,6 @@ class RecordParser
   end
 
   def parse
-    if @line.include? "|"
-      delimiter = " | "
-    elsif @line.include? ","
-      delimiter = ", "
-    else
-      delimiter = " "
-    end
-
     fields = @line.split(delimiter)
     if(fields.length != 5) #invalid record
       return
@@ -29,6 +21,17 @@ class RecordParser
     else
       @favorite_color = fields[4]
       @date_of_birth = fields[3]
+    end
+  end
+
+  private
+  def delimiter
+    @delimiter ||= if @line.include? "|"
+      " | "
+    elsif @line.include? ","
+      ", "
+    else
+      " "
     end
   end
 end
