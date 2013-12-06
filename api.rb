@@ -25,8 +25,10 @@ module RecordApi
     resource :records do
       desc "Post a single data line delimited by either pipes, commas, or spaces"
       post do
-        record = Record.new
-        record.parse(params[:line])
+        parser = RecordParser.new
+        parser.parse(params[:line])
+        record = Record.new(parser.last_name, parser.first_name, parser.gender, parser.favorite_color, parser.date_of_birth)
+        
         if !record.valid?
           error! "Invalid Record", 400
         end

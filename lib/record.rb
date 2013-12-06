@@ -11,7 +11,7 @@ class Record
     if(last_name == nil)
       return
     end
-    
+
     @last_name = last_name
     @first_name = first_name
     @gender = gender
@@ -21,35 +21,6 @@ class Record
       @date_of_birth = date_of_birth
     else
       @date_of_birth = parse_date_string(date_of_birth)
-    end
-
-    @valid = true
-  end
-
-  def parse(line)
-    if line.include? "|"
-      delimiter = " | "
-    elsif line.include? ","
-      delimiter = ", "
-    else
-      delimiter = " "
-    end
-
-    fields = line.split(delimiter)
-    if(fields.length != 5) #invalid record
-      return
-    end
-
-    @last_name = fields[0]
-    @first_name = fields[1]
-    @gender = fields[2]
-
-    if delimiter != " "
-      @favorite_color = fields[3]
-      @date_of_birth = parse_date_string(fields[4])
-    else
-      @favorite_color = fields[4]
-      @date_of_birth = parse_date_string(fields[3])
     end
 
     @valid = true

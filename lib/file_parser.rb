@@ -6,8 +6,9 @@ class FileParser
     begin
       File.open(file_path) do |file|
         file.each_line do |line|
-          record = Record.new
-          record.parse(line)
+          parser = RecordParser.new
+          parser.parse(line)
+          record = Record.new(parser.last_name, parser.first_name, parser.gender, parser.favorite_color, parser.date_of_birth)
           result_set.push(record)
         end
       end
