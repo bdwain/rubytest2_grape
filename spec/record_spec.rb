@@ -91,15 +91,15 @@ describe Record do
     context "when the month is 1 digit long" do
       let(:date) {"1/10/1988"}
       it "doesn't zero-pad months" do
-        expect(record.to_s.include?("1/10/1988")).to be_true
-        expect(record.to_s.include?("01/10/1988")).to be_false
+        expect(record.to_s.include?(date)).to be_true
+        expect(record.to_s.include?("0" + date)).to be_false
       end
     end
 
     context "when the day is 1 digit long" do
       let(:date) {"10/1/1988"}
       it "doesn't zero-pad days" do
-        expect(record.to_s.include?("10/1/1988")).to be_true
+        expect(record.to_s.include?(date)).to be_true
       end
     end
   end
