@@ -92,6 +92,7 @@ describe Record do
       let(:date) {"1/10/1988"}
       it "doesn't zero-pad months" do
         expect(record.to_s.include?("1/10/1988")).to be_true
+        expect(record.to_s.include?("01/10/1988")).to be_false
       end
     end
 
