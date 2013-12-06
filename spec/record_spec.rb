@@ -105,16 +105,32 @@ describe Record do
   end
 
   describe "#to_json" do
-    it "returns a json representation of an object with the 5 fields" do
-      r = Record.new(last_name: "Smith", first_name: "Jon", gender: "Male", favorite_color: "Blue", date_of_birth: "5/15/1988")
+    let(:record) {Record.new(last_name: "Smith", first_name: "Jon", gender: "Male", favorite_color: "Blue", date_of_birth: date)}
+    let(:date) {"5/15/1988"}
 
-      result = JSON.parse(r.to_json)
+    it "returns a json representation of an object with the 5 fields" do
+      result = JSON.parse(record.to_json)
       expect(result.length).to eq(5)
       expect(result["last_name"]).to eq("Smith")
       expect(result["first_name"]).to eq("Jon")
       expect(result["gender"]).to eq("Male")
       expect(result["favorite_color"]).to eq("Blue")
-      expect(result["date_of_birth"]).to eq("5/15/1988")
+      expect(result["date_of_birth"]).to eq(date)
     end
+
+    context "when the month is 1 digit long" do
+      let(:date) {"1/10/1988"}
+      it "doesn't zero-pad months" do
+        expect(record.to_json.include?(date)).to be_true
+        expect(record.to_json.include?("0" + date)).to be_false
+      end
+    end
+
+    context "when the day is 1 digit long" do
+      let(:date) {"10/1/1988"}
+      it "doesn't zero-pad days" do
+        expect(record.to_json.include?(date)).to be_true
+      end
+    end    
   end
 end
