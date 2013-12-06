@@ -64,7 +64,7 @@ describe RecordApi::API do
 
         it "adds the record to the record file" do
           File.open(record_filename, "r") do |file|
-            expect(file.grep("Smith Bob Male 10/12/1985 Blue")).to be_true
+            expect(file.grep(/Smith Bob Male 10\/12\/1985 Blue/).length).to eq(1)
           end
         end
       end
@@ -79,13 +79,13 @@ describe RecordApi::API do
 
         it "adds the record to the record file" do
           File.open(record_filename, "r") do |file|
-            expect(file.grep("Jones Tom Male 10/12/1985 Blue")).to be_true
+            expect(file.grep(/Jones Tom Male 10\/12\/1985 Blue/).length).to eq(1)
           end
         end
 
         it "does not delete the existing contents" do
           File.open(record_filename, "r") do |file|
-            expect(file.grep("Smith Bob Male 10/12/1985 Blue")).to be_true
+            expect(file.grep(/Smith Bob Male 10\/12\/1985 Blue/).length).to eq(1)
           end
         end
       end
