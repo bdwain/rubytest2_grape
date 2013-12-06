@@ -1,16 +1,20 @@
 class RecordParser
   attr_reader :last_name, :first_name, :gender, :favorite_color, :date_of_birth
 
-  def parse(line)
-    if line.include? "|"
+  def initialize(line)
+    @line = line
+  end
+
+  def parse
+    if @line.include? "|"
       delimiter = " | "
-    elsif line.include? ","
+    elsif @line.include? ","
       delimiter = ", "
     else
       delimiter = " "
     end
 
-    fields = line.split(delimiter)
+    fields = @line.split(delimiter)
     if(fields.length != 5) #invalid record
       return
     end
