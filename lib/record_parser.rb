@@ -8,7 +8,7 @@ class RecordParser
   def parse
     fields = @line.split(delimiter)
     if(fields.length != 5) #invalid record
-      return
+      raise "Invalid number of fields. Should be 5."
     end
 
     @last_name = fields[0]
