@@ -27,21 +27,8 @@ class Record
     @date_of_birth == other_record.date_of_birth
   end
 
-  def to_s
-    "#{@last_name} #{@first_name} #{@gender} #{get_date_string(@date_of_birth)} #{@favorite_color}"
-  end
-
-  def to_json(options = nil)
-    {"last_name" => @last_name, "first_name" => @first_name, "gender" => @gender, 
-     "favorite_color" => @favorite_color, "date_of_birth" => get_date_string(@date_of_birth)}.to_json
-  end
-
   private
   def parse_date_string(str)
     Date.strptime(str, "%m/%d/%Y")
-  end
-
-  def get_date_string(date)
-    date.strftime("%-m/%-d/%Y")
   end
 end

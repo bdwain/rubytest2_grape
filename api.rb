@@ -3,6 +3,7 @@ require 'record_set'
 require 'record'
 require 'record_parser'
 require 'grape'
+require 'record_set_serializer'
 
 module RecordApi
   class API < Grape::API
@@ -34,25 +35,26 @@ module RecordApi
           error! "Invalid Record", 400
         end
 
+        serialzer = RecordSerializer.new(record)
         File.open(get_record_filename, "a") do |file|
-          file.puts(record.to_s)
+          file.puts(serialzer.to_s)
         end
-        record
+        serialzer
       end
 
       desc "Return records sorted by gender (females before males) then by last name ascending."
       get :gender do
-        get_current_record_set.get_records_by_gender
+        RecordSetSerializer.new(get_current_record_set.sort_records_by_gender)
       end
 
       desc "Return records sorted by birth date, ascending."
       get :birthdate do
-        get_current_record_set.get_records_by_birth_date_ascending
+        RecordSetSerializer.new(get_current_record_set.sort_records_by_birth_date_ascending)
       end
 
       desc "Return records sorted by last name, descending."
       get :name do
-        get_current_record_set.get_records_by_last_name_descending
+        RecordSetSerializer.new(get_current_record_set.sort_records_by_last_name_descending)
       end
     end
   end
