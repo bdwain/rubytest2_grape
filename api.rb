@@ -1,6 +1,7 @@
 require 'file_parser'
 require 'record_set'
 require 'record'
+require 'record_parser'
 require 'grape'
 
 module RecordApi
