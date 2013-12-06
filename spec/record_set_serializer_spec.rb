@@ -6,8 +6,7 @@ describe RecordSetSerializer do
     let(:record1) {Record.new(last_name: "Smith", first_name: "Bob", gender: "Male", favorite_color: "Blue", date_of_birth: "5/15/1988")}
     let(:record2) {Record.new(last_name: "Jones", first_name: "Tom", gender: "Male", favorite_color: "Green", date_of_birth: "1/2/1990")}
     let(:serializer) do
-      set = RecordSet.new
-      set.add_records([record1, record2])
+      set = RecordSet.new([record1, record2])
       set.sort_records_by_last_name_descending
       RecordSetSerializer.new(set)
     end

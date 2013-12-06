@@ -2,6 +2,30 @@ require 'record_set'
 require 'record'
 
 describe RecordSet do
+  describe "#initialize" do
+    context "when an array is passed in" do
+      let(:records) do
+        record1 = Record.new(last_name: "Smith", first_name: "Bob", gender: "Male", favorite_color: "Blue", date_of_birth: "5/15/1988")
+        record2 = Record.new(last_name: "Jones", first_name: "Tom", gender: "Male", favorite_color: "Green", date_of_birth: "1/2/1990")
+        [record1, record2]
+      end
+      
+      it "initializes the set with those elements" do
+        set = RecordSet.new(records)
+
+        expect(set.records.size).to eq(2)
+        expect(set.records.include?(records[0])).to be_true
+        expect(set.records.include?(records[1])).to be_true
+      end
+    end
+
+    context "when nothing is passed in" do
+      it "initializes an empty set" do
+        expect(RecordSet.new.records.size).to eq(0)
+      end
+    end
+  end
+
   describe "#add_records" do
     let(:records) do
       record1 = Record.new(last_name: "Smith", first_name: "Bob", gender: "Male", favorite_color: "Blue", date_of_birth: "5/15/1988")
@@ -24,11 +48,7 @@ describe RecordSet do
     let(:sarah_jones) {Record.new(last_name: "Jones", first_name: "Sarah", gender: "female", favorite_color: "Green", date_of_birth: "1/2/1990")}
     let(:will_jones) {Record.new(last_name: "Jones", first_name: "Will", gender: "Male", favorite_color: "Red", date_of_birth: "1/3/1945")}
 
-    let(:set) do
-      set = RecordSet.new
-      set.add_records([bob_smith, sarah_jones, will_jones])
-      set
-    end
+    let(:set) {RecordSet.new([bob_smith, sarah_jones, will_jones])}
 
     it "returns self" do
       expect(set.sort_records_by_gender).to eq(set)
@@ -47,11 +67,7 @@ describe RecordSet do
     let(:fourth_person) {Record.new(last_name: "Gretzky", first_name: "Wayne", gender: "Male", favorite_color: "Black", date_of_birth: "6/13/1990")}
     let(:fifth_person) {Record.new(last_name: "Jordan", first_name: "Michael", gender: "Male", favorite_color: "Brown", date_of_birth: "5/14/1991")}
 
-    let(:set) do
-      set = RecordSet.new
-      set.add_records([fourth_person, second_person, first_person, fifth_person, third_person])
-      set
-    end
+    let(:set) {RecordSet.new([fourth_person, second_person, first_person, fifth_person, third_person])}
 
     it "returns self" do
       expect(set.sort_records_by_birth_date_ascending).to eq(set)
@@ -70,11 +86,7 @@ describe RecordSet do
     let(:fourth_person) {Record.new(last_name: "Smith", first_name: "Will", gender: "Male", favorite_color: "Red", date_of_birth: "1/3/1989")}
     let(:fifth_person) {Record.new(last_name: "Williams", first_name: "Venus", gender: "Female", favorite_color: "Green", date_of_birth: "4/3/1989")}
 
-    let(:set) do
-      set = RecordSet.new
-      set.add_records([fourth_person, second_person, first_person, fifth_person, third_person])
-      set
-    end
+    let(:set) {RecordSet.new([fourth_person, second_person, first_person, fifth_person, third_person])}
 
     it "returns self" do
       expect(set.sort_records_by_last_name_descending).to eq(set)

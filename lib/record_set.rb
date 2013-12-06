@@ -1,12 +1,17 @@
 class RecordSet
   attr_reader :records
 
-  def initialize
-    @records = Array.new
+  def initialize(new_records = nil)
+    if new_records
+      @records = Array.new(new_records)
+    else
+      @records = Array.new
+    end
   end
 
-  def add_records(newRecords)
-    @records.concat(newRecords)
+  def add_records(new_records)
+    @records.concat(new_records)
+    self
   end
 
   def sort_records_by_gender
