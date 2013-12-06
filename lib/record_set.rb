@@ -6,7 +6,7 @@ class RecordSet
   end
 
   def add_records(newRecords)
-    @records.concat(newRecords.select {|record| record.valid? })
+    @records.concat(newRecords)
   end
 
   def get_records_by_gender

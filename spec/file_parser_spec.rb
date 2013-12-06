@@ -1,4 +1,5 @@
 require 'file_parser'
+require 'record'
 require 'tempfile'
 
 describe FileParser do
@@ -17,8 +18,8 @@ describe FileParser do
           file.unlink
         end
 
-        record1 = Record.new("Jones", "Sarah", "Female", "Red", "4/1/1982")
-        record2 = Record.new("Smith", "Joe", "Male", "Blue", "5/15/1988")
+        record1 = Record.new(last_name: "Jones", first_name: "Sarah", gender: "Female", favorite_color: "Red", date_of_birth: "4/1/1982")
+        record2 = Record.new(last_name: "Smith", first_name: "Joe", gender: "Male", favorite_color: "Blue", date_of_birth: "5/15/1988")
 
         expect(result_set.length).to eq(2)
         expect(result_set.include?(record1)).to be_true
@@ -26,6 +27,7 @@ describe FileParser do
       end
     end
   end
+
   context "when the file does not exist" do
     it "rescues the exception" do
       file_parser = FileParser.new

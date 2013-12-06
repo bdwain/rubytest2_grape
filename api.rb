@@ -29,7 +29,7 @@ module RecordApi
         begin
           parser = RecordParser.new(params[:line])
           parser.parse
-          record = Record.new(parser.last_name, parser.first_name, parser.gender, parser.favorite_color, parser.date_of_birth)
+          record = Record.new(last_name: parser.last_name, first_name: parser.first_name, gender: parser.gender, favorite_color: parser.favorite_color, date_of_birth: parser.date_of_birth)
         rescue
           error! "Invalid Record", 400
         end
