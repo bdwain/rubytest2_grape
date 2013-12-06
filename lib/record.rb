@@ -3,8 +3,8 @@ require 'date'
 class Record
   attr_reader :last_name, :first_name, :gender, :favorite_color, :date_of_birth
 
+  #ruby 2.1 should have required keyword args, so we won't need to explicity raise exceptions
   def initialize(last_name: nil, first_name: nil, gender: nil, favorite_color: nil, date_of_birth: nil)
-    #ruby 2.1 should have required keyword args, so we won't need to explicity raise exceptions
     raise "last_name is required" unless @last_name = last_name
     raise "first_name is required" unless @first_name = first_name
     raise "gender is required" unless @gender = gender
