@@ -13,14 +13,8 @@ class RecordParser
     @last_name = fields[0]
     @first_name = fields[1]
     @gender = fields[2]
-
-    if delimiter != " "
-      @favorite_color = fields[3]
-      @date_of_birth = fields[4]
-    else
-      @favorite_color = fields[4]
-      @date_of_birth = fields[3]
-    end
+    @favorite_color = fields[favorite_color_index]
+    @date_of_birth = fields[date_of_birth_index]
   end
 
   private
@@ -37,4 +31,20 @@ class RecordParser
   def fields
     @fields ||= @line.split(delimiter)
   end
+
+  def favorite_color_index
+    @color_index ||= if delimiter != " "
+      3
+    else
+      4
+    end
+  end
+
+  def date_of_birth_index
+    @date_of_birth_index ||= if delimiter != " "
+      4
+    else
+      3
+    end
+  end  
 end
